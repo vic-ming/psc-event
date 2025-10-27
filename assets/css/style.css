@@ -280,6 +280,7 @@ button {
   color: #2E2928;
   margin-bottom: 16px;
   font-weight: 700;
+  text-align: center;
 }
 
 .form-group {
