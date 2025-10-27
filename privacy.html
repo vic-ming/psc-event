@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Event</title>
     <!-- 字體 -->
@@ -17,8 +17,11 @@
   <body>
     <div class="container">
       <!-- header -->
-      <div class="header">
-        <img src="./assets/images/logo.svg" alt="logo">
+      <div class="header">  
+        <div class="header-logo-container">
+          <img src="./assets/images/logo.svg" alt="logo">
+        </div>
+        <div class="header-line"></div>
       </div>
 
       <!-- content -->
@@ -27,19 +30,62 @@
         <div class="org-line"></div>
         <div class="privacy-content">
 
-          <p>非常歡迎您光臨2025台北國際金融博覽臺灣企銀攤位，本行重視您的隱私，本活動旨在推廣防詐觀念，參加本活動者僅需掃描Qrcode集點，無須輸入姓名、電話、電子郵件等個人資料。</p>
-          <p>活動過程中，活動頁面可能因網頁運作而自動記錄瀏覽行為等資料，僅作為不記名統計與分析之用，用以了解活動參與情形，不會用於辨識個人身分、行銷廣告或其他目的使用。</p>
-          <p>本活動所產生之資料將由本行或受委託廠商依相關法令及本行資訊安全管理規範妥善保存，並於目的達成或活動結束後刪除。</p>
-          <p></p>本行不會將資料提供予任何第三人，除非有法律依據或政府機關依法要求。</p>
-          <p>若您對本活動資料使用有任何疑問，歡迎聯繫本行客服專線0800-01-7171(限市話)或至本行客服信箱留言。</p>
-         
+          <p>非常歡迎您蒞臨「2025 台北國際金融展 - 統一證券」攤位活動。本公司重視您的個人資料保護，為使您能安心參與本活動及了解本公司如何蒐集、處理及利用您的個人資料，特此說明本政策內容，請您詳閱以下條款：</p>
+
+          <p class="mb-0">一、隱私權保護政策的適用範圍</p>
+          <p>隱私權保護政策內容，適用於您參與本公司於「台北國際金融展」活動及該集點網站（以下簡稱「本網站」）時，所涉及之個人資料蒐集、處理及利用。</p>
+          <p>本政策不適用於本網站以外之第三方網站或非本公司所委託或參與管理的人員。</p>
+
+          <p class="mb-0">二、個人資料之蒐集、處理及利用方式</p>
+          <p class="mb-0">1. 蒐集目的與項目</p>
+          <p>本公司基於提供活動服務、後續行銷推廣及客戶關係維護等目的，可能蒐集下列個人資料： 姓名、聯絡電話（行動電話號碼）</p>
+          <p class="mb-0">2. 利用目的</p>
+          <p>本公司將於蒐集目的範圍內使用您的個人資料，包括但不限於：活動通知、得獎聯繫、意見回饋、提供金融商品或服務之資訊，以簡訊等方式提供行銷推廣或開戶邀請資訊</p>
+          <p class="mb-0">3. 利用期間、地區、對象及方式</p>
+          <p>本公司得於中華民國境內，在蒐集目的存續期間內，以電話、簡訊、電子郵件或其他合法方式使用您的個人資料。您可隨時透過本公司客服專線或書面方式通知本公司停止行銷推廣使用。</p>
+
+          <p class="mb-0">三、個人資料之保護</p>
+          <p>本公司之主機與資料庫均設有防火牆、防毒系統及存取權限控管等資訊安全防護措施，以保障您的個人資料安全。僅限經授權之人員可接觸您的個人資料，且所有相關人員皆簽署保密協議。如有違反保密義務者，將依法處理。如有委託第三方協助執行業務，本公司亦將要求其遵守個資保護義務，並進行必要監督。</p>
+
+          <p class="mb-0">四、網站對外連結</p>
+          <p>本網站可能提供至其他網站之連結，但該網站不適用本隱私權保護政策。請您自行參閱該連結網站之隱私權政策。</p>
+
+          <p class="mb-0">五、個人資料提供予第三人之情形</p>
+          <p>本公司除依法律規定或主管機關要求外，不會任意出售、交換、出租或揭露您的個人資料予第三人。</p>
+          <p class="mb-0">但下列情形者不在此限：</p>
+          <p class="mb-0">1. 依法令規定或有主管機關之要求。</p>
+          <p class="mb-0">2. 經您書面同意。</p>
+          <p class="mb-0">3. 為免除您生命、身體、自由或財產上之危險。</p>
+          <p class="mb-0">4. 為維護公共利益或與公務機關、學術機構合作進行統計、研究之必要，且資料已經過去識別化處理。</p>
+          <p class="mb-0">5. 您違反活動規範或可能損害他人權益時，揭露為辨識、聯絡或採取法律行動所必要者。</p>
+          <p class="mb-0">6. 本公司委託第三方協助蒐集、處理或利用個人資料者，將善盡監督管理責任。</p>
+
+          <p class="mb-0">六、Cookie之使用</p>
+          <p>為提供更佳的使用體驗與分析服務，本網站可能於您的瀏覽裝置中放置 Cookie。若您不願接受 Cookie，可於瀏覽器設定中調整隱私權等級，但部分功能可能因此無法正常使用。</p>
+
+          <p class="mb-0">七、當事人權利行使方式</p>
+          <p class="mb-0">依個人資料保護法第3條規定，您得就您的個人資料向本公司行使以下權利：</p>
+          <p class="mb-0">• 查詢或請求閱覽</p>
+          <p class="mb-0">• 請求製給複製本</p>
+          <p class="mb-0">• 請求補充或更正</p>
+          <p class="mb-0">• 請求停止蒐集、處理或利用</p>
+          <p>• 請求刪除</p>
+          <p>行使上述權利或有任何疑問，請洽本公司客服專線：(02)8172-4668。</p>
+          <p>營業時間：營業日8:00~20:00</p>
+
+          <p class="mb-0">八、隱私權政策之修訂</p>
+          <p>本政策將視法令修正或營運需求隨時更新，修訂後版本將公布於本網站，請您定期查閱。</p>
+
+          <p class="mb-0">Cookies 使用聲明</p>
+          <p>為提升您的使用體驗，本網站使用 Cookies 進行流量分析。若您持續使用本網站，即表示您同意本公司使用 Cookies。更多資訊請參閱本隱私權政策。</p>
+
         </div>
         <button class="common-button back-button" onclick="window.location.href='index.html'">回首頁</button>
       </main>
 
       <!-- footer -->
-      <div class="footer">
-        <div class="footer-line"> </div>
+      <div class="footer-line">
+        © 統一綜合證券股份有限公司 114年金管證總字第0041號
       </div>
       
     </div>
@@ -59,15 +105,15 @@
     font-size: 28px;
     font-weight: 700;
     text-align: center;
-    color: #DC5511;
+    color: #2E2928;
   }
   .org-line{
     width: 38px;
     height: 4px;
-    background-color: #FAA500;
+    background: linear-gradient(90deg, #F9A61A 31.25%, #F37721 63.94%, #EC3023 100%);
   }
   .privacy-content{
-    color: #333333;
+    color: #2E2928;
     font-size: 16px;
     text-align: left;
     flex: 1;
@@ -84,17 +130,17 @@
   }
   
   .privacy-content::-webkit-scrollbar-track {
-    background: rgba(218, 55, 0, 0.2);
+    background: rgba(16, 73, 93, 0.2);
     border-radius: 3px;
   }
   
   .privacy-content::-webkit-scrollbar-thumb {
-    background: #DC5511;
+    background: #374745;
     border-radius: 3px;
   }
   
   .privacy-content::-webkit-scrollbar-thumb:hover {
-    background: #B8440E;
+    background: #374745;
   }
   .privacy-content p{
     margin-bottom: 16px;
