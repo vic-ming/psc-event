@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
+    <title>Event</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet"> 
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">  
+        <div class="header-logo-container">
+          <img src="./assets/images/logo.svg" alt="logo">
+        </div>
+      <div class="header-line"></div>
+      <img class="header-bg" src="./assets/images/header-bg.svg" alt="header-bg">
+    </div>
+
+    <!-- content -->
+    <main class="main" id="mainContent" style="display: flex;">
+        <!-- 主題卡片 -->
+        <div class="event-container">
+          <!-- usage -->
+          <img class="usage-img" src="./assets/images/usage.svg" alt="usage" onclick="window.location.href='index.html'">
+          <!-- 網格 -->
+          <img class="net-img" src="./assets/images/net.png" alt="net">
+          <!-- 標題 -->
+          <img class="title-img" src="./assets/images/title.png" alt="title" >
+
+
+
+
+          <!-- bars -->
+          <div class="bars-container">
+            <img class="bar-img-1" src="./assets/images/bar-1.svg" alt="bars" >
+            <img class="bar-img-2" src="./assets/images/bar-2.svg" alt="bars" >
+            <img class="bar-img-3" src="./assets/images/bar-3.svg" alt="bars" >
+            <img class="bar-img-4" src="./assets/images/bar-4.svg" alt="bars" >
+          </div>
+
+          <div class="collection-container">
+            <div onclick="collectEvent(1)" data-event-id="1">期貨交易</div>
+            <div onclick="collectEvent(2)" data-event-id="2">ETF速配所</div>
+            <div onclick="collectEvent(3)" data-event-id="3">詐騙雷達</div>
+            <div onclick="collectEvent(4)" data-event-id="4">e起發App</div>
+          </div>
+
+          <!-- 已領取 -->
+          <img class="rewarded" id="rewardedImage" src="./assets/images/rewarded.svg" alt="" style="display: none;">
+        </div>
+
+
+        <!-- 主要按鈕 -->
+        <div>
+          <!-- 掃描按鈕（收集完成前顯示） -->
+          <img class="scan-button" id="scanButton" src="./assets/images/scan-button.svg" alt="event" onclick="window.location.href='scan.html'" style="display: block;">
+
+          <!-- 禮物按鈕（收集完成後顯示） -->
+          <img class="gift-button" id="giftButton" src="./assets/images/gift-button.svg" alt="event" onclick="showRedeemPopup()" style="display: none;">
+
+          <!-- 禮物按鈕（兌換完成後顯示） -->
+          <img class="redeem-button" id="redeemButton" src="./assets/images/redeem-button.svg" alt="event" onclick="showRedeemPopup()" style="display: none;">
+        </div>
+
+
+        <!-- 背景元件 -->
+        <img class="bg-group-left" src="./assets/images/bg-group-left.png" alt="">
+        <img class="bg-group-right" src="./assets/images/bg-group-right.png" alt="">
+        
+      </main>
+
+   
+
+      <!-- footer -->
+      <div class="footer">
+        <div class="footer-line">
+          © 統一綜合證券股份有限公司 114年金管證總字第0041號
+        </div>
+      </div>
+      
+    </div>
+
+
+      <!-- 兌換獎品彈窗 -->
+      <div class="popup-overlay redeem-popup-overlay" id="redeemPopup">
+        <div class="popup-content redeem-popup">
+          <button class="popup-close" onclick="closePopup()">×</button>
+          <h2 class="popup-title">兌換獎品</h2>
+          <div class="popup-content-box">
+            <div class="popup-notice">
+              <span class="notice-label">注意</span>
+              <p class="notice-text">請交由服務人員按下兌換按鈕</p>
+            </div>
+            
+            <div class="form-section">
+              <p class="form-section-title">請填寫表格作為兌獎依據</p>
+              <div class="form-group">
+                <input type="text" class="form-input" id="userName" placeholder="請輸入姓名(必填)" value="">
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-input" id="userPhone" placeholder="請輸入手機或電話號碼(必填)" value="">
+              </div>
+              <div class="form-error" id="userInfoError" style="display: none;">皆為必填</div>
+            </div>
+
+            <div class="form-section">
+              <p class="form-section-title">請交由服務人員輸入密碼</p>
+              <div class="form-group">
+                <input type="text" class="form-input" id="servicePassword" placeholder="請輸入四位數密碼" value="" maxlength="4">
+              </div>
+              <div class="form-error" id="passwordError" style="display: none;">密碼錯誤</div>
+            </div>
+          </div>
+          <button class="popup-button" onclick="goToRedeem()">去兌換</button>
+        </div>
+      </div>
+
+      <!-- 兌換完成彈窗 -->
+      <div class="popup-overlay" id="finishPopup">
+        <div class="popup-content">
+          <button class="popup-close" onclick="closePopup()">×</button>
+          <h2 class="popup-title">兌換獎品</h2>
+          <div class="popup-content-box">
+            <p class="popup-message">請領取獎品</p>
+          </div>
+           <button class="popup-button" onclick="closeFinishPopup()">OK</button>
+        </div>
+      </div>
+
+      <!-- 已兌換過彈窗 -->
+      <div class="popup-overlay" id="redeemedPopup">
+        <div class="popup-content">
+          <button class="popup-close" onclick="closePopup()">×</button>
+          <h2 class="popup-title">兌換獎品</h2>
+          <div class="popup-content-box">
+            <p class="popup-message">每支行動裝置只能體驗一次噢</p>
+          </div>
+           <button class="popup-button" onclick="closeFinishPopup()">OK</button>
+        </div>
+      </div>
+
+      <!-- 收集彈窗 -->
+      <div class="popup-overlay" id="stampCollectedPopup">
+        <div class="popup-content stamp-popup">
+          <h2 class="popup-title">成功點亮K棒</h2>
+          <h3 class="stamp-subtitle" id="stampSubtitle"></h3>
+          <div class="stamp-icon">
+            <img id="collectedStampImage" src="" alt="collected stamp">
+          </div>
+          
+          
+          <button class="popup-button stamp-ok-button" onclick="onStampCollected()">OK</button>
+        </div>
+      </div>
+
+      <!-- 提示不可橫向 -->
+      <div class="popup-overlay" id="upright">
+        <img src="./assets/images/upright.svg" alt="upright">
+      </div>
+
+
+    <script>
+      // 統一的彈窗管理系統
+      class PopupManager {
+        constructor() {
+          this.activePopup = null;
+          this.redeemed = false;
+          this.init();
+        }
+
+        init() {
+          // 為所有彈窗添加背景點擊關閉功能
+          document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('popup-overlay')) {
+              // upright 彈窗不允許點擊關閉，需要旋轉裝置
+              if (this.activePopup !== 'upright') {
+                this.closePopup();
+              }
+            }
+          });
+
+          // ESC 鍵關閉彈窗
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.activePopup) {
+              // upright 彈窗不允許ESC關閉
+              if (this.activePopup !== 'upright') {
+                this.closePopup();
+              }
+            }
+          });
+        }
+
+        // 顯示彈窗
+        showPopup(popupId) {
+          // 如果已有彈窗打開，先關閉
+          if (this.activePopup) {
+            this.closePopup();
+          }
+
+          const popup = document.getElementById(popupId);
+          if (popup) {
+            popup.style.display = 'flex';
+            this.activePopup = popupId;
+            
+            // 防止背景滾動
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        // 關閉彈窗
+        closePopup() {
+          if (this.activePopup) {
+            const popup = document.getElementById(this.activePopup);
+            if (popup) {
+              popup.style.display = 'none';
+            }
+            this.activePopup = null;
+            
+            // 恢復背景滾動
+            document.body.style.overflow = 'auto';
+          }
+        }
+
+        // 關閉所有彈窗
+        closeAllPopups() {
+          const popups = document.querySelectorAll('.popup-overlay');
+          popups.forEach(popup => {
+            popup.style.display = 'none';
+          });
+          this.activePopup = null;
+          document.body.style.overflow = 'auto';
+        }
+
+        // 檢查是否有彈窗打開
+        hasActivePopup() {
+          return this.activePopup !== null;
+        }
+      }
+
+      // 創建全局彈窗管理器實例
+      const popupManager = new PopupManager();
+
+      // 統一的彈窗控制函數
+      function showPopup(popupId) {
+        popupManager.showPopup(popupId);
+      }
+
+      function closePopup() {
+        popupManager.closePopup();
+      }
+
+      function closeAllPopups() {
+        popupManager.closeAllPopups();
+      }
+
+      // 兌換獎品彈窗相關函數
+      function showRedeemPopup() {
+        if (popupManager.redeemed) {
+          showRedeemedPopup();
+        } else {
+          showPopup('redeemPopup');
+        }
+      }
+
+      function closeRedeemPopup() {
+        closePopup();
+      }
+
+      function goToRedeem() {
+        // 獲取表單值
+        const userName = document.getElementById('userName').value.trim();
+        const userPhone = document.getElementById('userPhone').value.trim();
+        const servicePassword = document.getElementById('servicePassword').value.trim();
+        
+        // 重置錯誤顯示
+        hideAllFormErrors();
+        
+        // 驗證用戶信息
+        let hasError = false;
+        
+        if (!userName || !userPhone) {
+          showFormError('userInfoError');
+          hasError = true;
+        }
+        
+        // 驗證密碼（假設正確密碼是 "1234"）
+        if (!servicePassword || servicePassword.length !== 4) {
+          showFormError('passwordError');
+          hasError = true;
+        } else if (servicePassword !== '1234') {
+          showFormError('passwordError');
+          hasError = true;
+        }
+        
+        // 如果有錯誤，不繼續執行
+        if (hasError) {
+          return;
+        }
+        
+        // 驗證通過，顯示完成彈窗
+        showPopup('finishPopup');
+      }
+      
+      function showFormError(errorId) {
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+          errorElement.style.display = 'block';
+        }
+      }
+      
+      function hideFormError(errorId) {
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+          errorElement.style.display = 'none';
+        }
+      }
+      
+      function hideAllFormErrors() {
+        hideFormError('userInfoError');
+        hideFormError('passwordError');
+      }
+      
+
+      function closeFinishPopup() {
+        closePopup();
+        // 領取完成後的處理
+        showRewardedDisplay();
+      }
+
+      function showRedeemedPopup() {
+        showPopup('redeemedPopup');
+      }
+
+      function closeRedeemedPopup() {
+        closePopup();
+      }
+
+      // 顯示已領取狀態
+      function showRewardedDisplay() {
+        // 顯示已領取圖片
+        popupManager.redeemed = true;
+        const rewardedImage = document.getElementById('rewardedImage');
+        if (rewardedImage) {
+          rewardedImage.style.display = 'block';
+        }
+        
+        // 切換到兌換完成按鈕
+        switchToRedeemButton();
+      }
+
+
+
+      // 圖章收集狀態管理
+      let collectedStamps = []
+      const totalStamps = 4;
+
+      // 圖章文字對應關係
+      const stampTitles = {
+        1: '期貨交易',
+        2: 'ETF速配所',
+        3: '詐騙雷達',
+        4: 'e起發App'
+      };
+
+      // 圖章收集函數
+      function collectEvent(eventId) {
+        // 檢查是否已經兌換過
+        if (popupManager.redeemed) {
+          showRedeemedPopup();
+          return;
+        }
+
+        // 檢查是否已經收集過這個圖章
+        if (collectedStamps.includes(eventId)) {
+          return;
+        }
+        
+        // 添加到已收集列表
+        collectedStamps.push(eventId);
+
+        // 更新UI顯示
+        updateEventDisplay();
+
+        // 顯示收集成功彈窗
+        showStampCollectedPopup(eventId);
+
+        // 檢查是否集滿所有圖章
+        if (collectedStamps.length >= totalStamps) {
+          // 切換按鈕顯示
+          switchToGiftButton();
+        }
+
+        // 添加active類別到按鈕
+        const button = document.querySelector(`[data-event-id="${eventId}"]`);
+        if (button) {
+          button.classList.add('active');
+        }
+      }
+
+      // 更新事件顯示狀態
+      function updateEventDisplay() {
+        // 根據已收集的數量，從左到右激活對應的 bar
+        const barSequence = ['1', '2', '3', '4']; // 從左到右的 bar 順序
+        const currentActiveIndex = collectedStamps.length; // 當前應該激活的 bar 索引
+        
+        if (currentActiveIndex > 0) {
+          const barIndex = barSequence[currentActiveIndex - 1]; // 要激活的 bar 索引（-1 是因為陣列從0開始）
+          const barImg = document.querySelector(`.bar-img-${barIndex}`);
+          if (barImg) {
+            // 切換到active狀態的圖片
+            const currentSrc = barImg.src;
+            const activeSrc = currentSrc.replace('.svg', '-active.png');
+            barImg.src = activeSrc;
+            barImg.style.bottom = '0';
+          }
+        }
+      }
+
+      // 顯示圖章收集彈窗
+      function showStampCollectedPopup(eventId) {
+        // 根據圖章ID設置對應的圖片
+        const stampImage = document.getElementById('collectedStampImage');
+        if (stampImage) {
+          // 檢查是否收集了所有圖章
+          if (collectedStamps.length >= totalStamps) {
+            stampImage.src = './assets/images/collect-all.png';
+          } else {
+            stampImage.src = './assets/images/collect.png';
+          }
+        }
+        
+        // 根據圖章ID設置對應的文字標題
+        const stampSubtitle = document.getElementById('stampSubtitle');
+        if (stampSubtitle && stampTitles[eventId]) {
+          stampSubtitle.textContent = stampTitles[eventId];
+        }
+        
+        showPopup('stampCollectedPopup');
+      }
+
+      // 圖章收集彈窗的OK按鈕處理
+      function onStampCollected() {
+        closePopup();
+        // 可以在這裡添加其他邏輯，比如音效、動畫等
+      }
+
+      // 切換到禮物按鈕
+      function switchToGiftButton() {
+        const scanButton = document.getElementById('scanButton');
+        const giftButton = document.getElementById('giftButton');
+        
+        if (scanButton && giftButton) {
+          scanButton.style.display = 'none';
+          giftButton.style.display = 'block';
+        }
+      }
+
+      // 切換到掃描按鈕
+      function switchToScanButton() {
+        const scanButton = document.getElementById('scanButton');
+        const giftButton = document.getElementById('giftButton');
+        
+        if (scanButton && giftButton) {
+          scanButton.style.display = 'block';
+          giftButton.style.display = 'none';
+        }
+      }
+
+      // 切換到兌換完成按鈕
+      function switchToRedeemButton() {
+        const scanButton = document.getElementById('scanButton');
+        const giftButton = document.getElementById('giftButton');
+        const redeemButton = document.getElementById('redeemButton');
+        
+        if (scanButton && giftButton && redeemButton) {
+          scanButton.style.display = 'none';
+          giftButton.style.display = 'none';
+          redeemButton.style.display = 'block';
+        }
+      }
+
+      // 更新按鈕顯示狀態
+      function updateButtonDisplay() {
+        // 如果已經兌換過，顯示兌換完成按鈕
+        if (popupManager.redeemed) {
+          switchToRedeemButton();
+        } else if (collectedStamps.length >= totalStamps) {
+          switchToGiftButton();
+        } else {
+          switchToScanButton();
+        }
+      }
+
+      // 檢查是否已兌換
+      function checkRedeemedState() {
+        // 這裡可以從 localStorage 或其他地方檢查兌換狀態
+        // 目前簡化為檢查已領取圖片是否顯示
+        const rewardedImage = document.getElementById('rewardedImage');
+        if (rewardedImage && rewardedImage.style.display === 'block') {
+          popupManager.redeemed = true;
+        }
+      }
+
+      // 頁面載入時初始化
+      function initializeStamps() {
+        // 檢查兌換狀態
+        checkRedeemedState();
+        
+        // 根據已收集的圖章更新UI - 按照收集順序從左到右激活 bars
+        collectedStamps.forEach((stampId, index) => {
+          // 添加active類別到按鈕
+          const button = document.querySelector(`[data-event-id="${stampId}"]`);
+          if (button) {
+            button.classList.add('active');
+          }
+        });
+        
+        // 更新 bars 顯示 - 從左到右激活對應數量的 bars
+        const barSequence = ['1', '2', '3', '4'];
+        for (let i = 0; i < collectedStamps.length; i++) {
+          const barIndex = barSequence[i];
+          const barImg = document.querySelector(`.bar-img-${barIndex}`);
+          if (barImg) {
+            const currentSrc = barImg.src;
+            const activeSrc = currentSrc.replace('.svg', '-active.png');
+            barImg.src = activeSrc;
+            barImg.style.bottom = '0';
+          }
+        }
+        
+        // 更新按鈕顯示狀態
+        updateButtonDisplay();
+      }
+
+      // 判斷是否為行動裝置
+      function isMobileDevice() {
+        // 檢查螢幕寬度是否小於等於 768px (通常是平板以下設備)
+        if (window.innerWidth <= 768) {
+          return true;
+        }
+        // 使用 User Agent 檢查是否為常見的移動設備
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+        return mobileRegex.test(userAgent);
+      }
+
+      // 橫向/直向檢測函數
+      function checkOrientation() {
+        const uprightPopup = document.getElementById('upright');
+        if (uprightPopup) {
+          // 只對行動裝置進行判斷
+          if (!isMobileDevice()) {
+            // PC 設備不顯示 upright 彈窗，確保它是隱藏的
+            uprightPopup.style.display = 'none';
+            popupManager.activePopup = null;
+            return;
+          }
+          
+          // 檢查是否為橫向 (寬度大於高度)
+          const isLandscape = window.innerWidth > window.innerHeight;
+          
+          if (isLandscape) {
+            // 橫向時顯示提示
+            uprightPopup.style.display = 'flex';
+            popupManager.activePopup = 'upright';
+            // 隱藏其他內容
+            const mainContent = document.getElementById('mainContent');
+            const footer = document.getElementById('footer');
+            if (mainContent) mainContent.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+          } else {
+            // 直向時隱藏提示並恢復內容
+            if (popupManager.activePopup === 'upright') {
+              uprightPopup.style.display = 'none';
+              popupManager.activePopup = null;
+              
+              // 恢復主要內容顯示
+              const mainContent = document.getElementById('mainContent');
+              const footer = document.getElementById('footer');
+              if (mainContent) mainContent.style.display = 'flex';
+              if (footer) footer.style.display = 'flex';
+            }
+          }
+        }
+      }
+
+      // 頁面載入完成後初始化
+      document.addEventListener('DOMContentLoaded', function() {
+        // 檢查初始方向
+        checkOrientation();
+        
+        // 監聽方向變化
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('orientationchange', function() {
+          // 方向變化後稍微延遲再檢查，確保尺寸已更新
+          setTimeout(checkOrientation, 100);
+        });
+        
+        // 初始化頁面
+        initializeStamps();
+        checkOrientation();
+        initializeFormValidation();
+      });
+      
+      // 初始化表單驗證監聽器
+      function initializeFormValidation() {
+        const userName = document.getElementById('userName');
+        const userPhone = document.getElementById('userPhone');
+        const servicePassword = document.getElementById('servicePassword');
+        
+        if (userName) {
+          userName.addEventListener('input', () => {
+            if (userName.value.trim() && userPhone.value.trim()) {
+              hideFormError('userInfoError');
+            }
+          });
+        }
+        
+        if (userPhone) {
+          userPhone.addEventListener('input', () => {
+            if (userName.value.trim() && userPhone.value.trim()) {
+              hideFormError('userInfoError');
+            }
+          });
+        }
+        
+        if (servicePassword) {
+          servicePassword.addEventListener('input', () => {
+            hideFormError('passwordError');
+          });
+        }
+      }
+
+    </script>
+  </body>
+</html>
+
+<style>
+  
+  #mainContent{
+    background: linear-gradient(179.96deg, #FEC316 0.03%, #FED65C 46.18%, #FFEAA6 104.36%);
+  }
+  .footer-line{
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+  }
+</style>
