@@ -593,6 +593,36 @@
         }
       }
 
+      // 計算並設置縮放比例
+      function calculateEventContainerScale() {
+        const eventContainer = document.querySelector('.event-container');
+        if (!eventContainer) return;
+        
+        const currentWidth = eventContainer.clientWidth;
+        const originalWidth = 327; // 原始最大寬度
+        const scaleFactor = currentWidth / originalWidth;
+        
+        // 設置縮放比例
+        eventContainer.style.setProperty('--scale-factor', scaleFactor);
+        
+        // 設置字體大小
+        eventContainer.style.setProperty('--collection-font-size', `${10 * scaleFactor}px`);
+        
+        // 設置各元素的位置值（原始值 × 縮放比例）
+        eventContainer.style.setProperty('--net-top', `calc(50% - ${137 * scaleFactor}px)`);
+        eventContainer.style.setProperty('--net-left', `calc(50% - ${137 * scaleFactor}px)`);
+        eventContainer.style.setProperty('--title-top', `${6 * scaleFactor}px`);
+        eventContainer.style.setProperty('--title-left', `${20 * scaleFactor}px`);
+        eventContainer.style.setProperty('--usage-top', `${37 * scaleFactor}px`);
+        eventContainer.style.setProperty('--usage-right', `${10 * scaleFactor}px`);
+        eventContainer.style.setProperty('--bars-top', `${55 * scaleFactor}px`);
+        eventContainer.style.setProperty('--bars-left', `${54 * scaleFactor}px`);
+        eventContainer.style.setProperty('--collection-bottom', `${20 * scaleFactor}px`);
+        eventContainer.style.setProperty('--collection-padding', `${28 * scaleFactor}px`);
+        eventContainer.style.setProperty('--rewarded-right', `${-3 * scaleFactor}px`);
+        eventContainer.style.setProperty('--rewarded-bottom', `${59 * scaleFactor}px`);
+      }
+      
       // 頁面載入完成後初始化
       document.addEventListener('DOMContentLoaded', function() {
         // 檢查初始方向
@@ -609,6 +639,12 @@
         initializeStamps();
         checkOrientation();
         initializeFormValidation();
+        
+        // 計算並設置縮放比例
+        calculateEventContainerScale();
+        
+        // 監聽窗口大小變化
+        window.addEventListener('resize', calculateEventContainerScale);
       });
       
       // 初始化表單驗證監聽器

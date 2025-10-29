@@ -115,10 +115,19 @@ button {
   box-sizing: border-box;
 }
 .event-container{
-  width: 90%;
-  max-width: 327px;
-  margin: 0 auto;
+  width: calc(100% - 48px);
+  margin-left: 24px;
+  margin-right: 24px;
+  max-width: none;
+  background-image: url('../images/main-card.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  --scale-factor: 1;
+  transform-origin: left top;
   height: 0;
+  padding-bottom: calc(407px * var(--scale-factor));
 }
 .event-container .bars-container{
   display: flex;
@@ -147,9 +156,11 @@ button {
 .rewarded{
   position: absolute;
   width: 132px !important;
-  right: -3px;
-  bottom: 59px;
+  right: var(--rewarded-right, -3px);
+  bottom: var(--rewarded-bottom, 59px);
   opacity: .7;
+  transform: scale(var(--scale-factor));
+  transform-origin: bottom right;
 }
 
 /* 兌換獎品彈窗樣式 */
@@ -528,37 +539,35 @@ button {
   height: 22px;
 }
 
-.event-container{
-  background-image: url('../images/main-card.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 407px;
-  position: relative;
-}
 .event-container .net-img{
   width: 274px;
   height: 274px;
   object-fit: cover;
   position: absolute;
-  top: calc(50% - 137px);
-  left: calc(50% - 137px);
+  top: var(--net-top, calc(50% - 137px));
+  left: var(--net-left, calc(50% - 137px));
+  transform: scale(var(--scale-factor));
+  transform-origin: top left;
 }
 .event-container .title-img{
   width: 222px;
   height: 32px;
   object-fit: cover;
   position: absolute;
-  top: 6px;
-  left: 20px;
+  top: var(--title-top, 6px);
+  left: var(--title-left, 20px);
+  transform: scale(var(--scale-factor));
+  transform-origin: top left;
 }
 .event-container .usage-img{
   object-fit: cover;
   position: absolute;
-  top: 37px;
-  right: 10px;
+  top: var(--usage-top, 37px);
+  right: var(--usage-right, 10px);
   width: 32px;
   height: 32px;
+  transform: scale(var(--scale-factor));
+  transform-origin: top right;
 }
 .event-container .bars-container{
   background-size: cover;
@@ -567,9 +576,11 @@ button {
   width: 224px;
   height: 252px;
   position: absolute;
-  top: 55px;
-  left: 54px;
+  top: var(--bars-top, 55px);
+  left: var(--bars-left, 54px);
   z-index: 3;
+  transform: scale(var(--scale-factor));
+  transform-origin: top left;
 }
 .event-container .bars-container img{
   position: absolute;
@@ -600,15 +611,17 @@ button {
   align-items: center;
   gap: 8px;
   position: absolute;
-  bottom: 20px;
+  bottom: var(--collection-bottom, 20px);
   left: 0;
-  padding: 0 28px;
+  padding: 0 var(--collection-padding, 28px);
   width: 100%;
   height: 26px;
   box-sizing: border-box;
+  /* transform: scale(var(--scale-factor));
+  transform-origin: bottom center; */
 }
 .collection-container div{
-  font-size: 10px;
+  font-size: var(--collection-font-size, 10px);
   font-weight: 500;
   color: #979797;
   background-color: #fff;
