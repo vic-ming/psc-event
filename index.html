@@ -161,6 +161,8 @@
       function showCookieConsent() {
         // 檢查是否已經同意過 cookie
         const cookieConsent = localStorage.getItem('cookieConsent');
+
+        // todo: 為方便測試，先不檢查 cookie 同意狀態
         // if (!cookieConsent) {
           const cookieConsentBar = document.getElementById('cookieConsent');
           if (cookieConsentBar) {

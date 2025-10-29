@@ -91,6 +91,9 @@ button {
 .scan-button, .gift-button, .redeem-button{
   width: 240px;
 }
+.redeem-button{
+  margin-top: 10px;
+}
 .footer-line{
   width: 100%;
   height: 24px;
@@ -113,7 +116,7 @@ button {
 }
 .event-container{
   width: 90%;
-  max-width: 324px;
+  max-width: 327px;
   margin: 0 auto;
   height: 0;
 }
